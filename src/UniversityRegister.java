@@ -1,17 +1,17 @@
-import student.Student;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class UniversityRegister {
-    private List<Student> students;
+    private ArrayList<Student> students;
 
     public UniversityRegister() {
-        ArrayList<Student> students = new ArrayList<Student>();
+        students = new ArrayList<>();
     }
+
 
     public void addStudent(String name, int id, String course, String module) {
         Student student = new Student(name, id, course, module);
+        System.out.println(student.getName());
         students.add(student);
     }
 
@@ -20,6 +20,7 @@ public class UniversityRegister {
     }
 
     public List<Student> queryStudentsByName(String name) {
+
         return students.stream()
                 .filter(student -> student.getName().equals(name))
                 .collect(Collectors.toList());
