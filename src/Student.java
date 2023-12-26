@@ -1,5 +1,3 @@
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class Student {
     private String name;

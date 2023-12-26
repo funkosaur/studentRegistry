@@ -2,25 +2,50 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class UniversityRegister {
-    private ArrayList<Student> students;
+    private final ArrayList<Student> students;
 
     public UniversityRegister() {
-<<<<<<< Updated upstream
         students = new ArrayList<>();
-=======
-        students = new ArrayList<Student>();
->>>>>>> Stashed changes
+    }
+    
+    static void displayStudents(List<Student> students) {
+        for (Student student : students) {
+            System.out.println("Name: " + student.getName());
+            System.out.println("ID: " + student.getId());
+            System.out.println("Course: " + student.getCourse());
+            System.out.println("Module: " + student.getModule());
+            System.out.println();
+        }
     }
 
-
     public void addStudent(String name, int id, String course, String module) {
-        Student student = new Student(name, id, course, module);
-        System.out.println(student.getName());
-        students.add(student);
+        Student studentWithSameId = findStudentWithSameId(id);
+        if (studentWithSameId != null) {
+            String errorMessage = "A student with ID " + id + " already exists.";
+            throw new IllegalArgumentException(errorMessage);
+        }
+
+        Student newStudent = new Student(name, id, course, module);
+        System.out.println(newStudent.getName());
+        students.add(newStudent);
+    }
+
+    private Student findStudentWithSameId(int id) {
+        return students.stream()
+                .filter(student -> student.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     public void removeStudent(int id) {
-        students.removeIf(student -> student.getId() == id);
+        boolean wasRemoved = students.removeIf(student -> student.getId() == id);
+        if(!wasRemoved){
+            System.out.println("No student found with ID: " + id);
+        } else {
+            students.removeIf(student -> student.getId() == id);
+            System.out.println(students);
+            displayStudents(students);
+        }
     }
 
     public List<Student> queryStudentsByName(String name) {
