@@ -5,7 +5,11 @@ public class UniversityRegister {
     private ArrayList<Student> students;
 
     public UniversityRegister() {
+<<<<<<< Updated upstream
         students = new ArrayList<>();
+=======
+        students = new ArrayList<Student>();
+>>>>>>> Stashed changes
     }
 
 
@@ -53,5 +57,7 @@ public class UniversityRegister {
         // Implement this function to filter students whose names start with a given letter using functional programming.
         return null;
     }
+
+
 
 }
