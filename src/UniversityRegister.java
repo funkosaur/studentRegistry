@@ -45,6 +45,10 @@ public class UniversityRegister {
         }
     }
 
+    public List<Student> getAllStudents() {
+        return new ArrayList<>(this.students);
+    }
+
     private List<Student> _queryStudents(Predicate<Student> predicate) {
         return students.stream()
                 .filter(predicate)
